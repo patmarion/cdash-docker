@@ -25,10 +25,13 @@ RUN apt-get update && apt-get install -y -qq apache2 mysql-server php5 php5-mysq
 # perform necessary setup.
 ###
 
-WORKDIR /var/www/html
+WORKDIR /var/www
+
 RUN git clone https://github.com/Kitware/CDash.git CDash
-RUN cd CDash && git checkout Release-2-2-2 && mkdir -p /var/www/html/CDash/rss
-RUN chmod -R 777 /var/www/html/CDash && mv /var/www/html/CDash/* /var/www/html/ && rm /var/www/html/index.html
+RUN cd CDash && git checkout v2.4.0-prebuilt
+RUN ln -s /var/www/CDash/public /var/www/html/cdash
+RUN chown -R www-data:www-data /var/www/CDash
+RUN rm /var/www/html/index.html
 
 WORKDIR /root
 
