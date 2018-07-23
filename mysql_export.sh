@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
-mysqldump -u root cdash | gzip > /root/default_cdash_database.sql.gz
-cp /root/default_cdash_database.sql.gz /working
+
+/etc/init.d/mysql start
+mysqldump -u root --databases cdash | gzip > /root/local_files/cdash_database.sql.gz
 echo Finished.

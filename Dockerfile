@@ -39,11 +39,9 @@ WORKDIR /root
 # Copy over some files we'll use.
 ###
 
-# COPY default_cdash_database.sql.gz /root/
 COPY mysql_export.sh /root/
 COPY mysql_import.sh /root/
 COPY start_services.sh /root/
-COPY rebuild_mysql_db.sh /root/
 
 ####
 # Startup stuff.
